@@ -6,4 +6,5 @@ import com.springjpaManytoMany.model.Product;
 
 public interface ProductRepo extends JpaRepository<Product, Integer>{
 
+
 }
