@@ -2,12 +2,12 @@ package com.comspringaop.aspect;
 
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
+
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PathVariable;
+
 
 import com.comspringaop.controller.EmpAccntController;
 
@@ -33,15 +33,14 @@ public class LogginAspect {
 		 System.out.println("Please update the balance");
 	 }
 	 
-	 @AfterReturning("execution (* com.comspringaop.controller.EmpAccntController.isHigher(..))")
-	 public void checkaround()
+	 @AfterReturning( pointcut="execution (* com.comspringaop.controller.EmpAccntController.isHigher(..))",returning ="returnval")
+	 public void checkaround(boolean returnval)
 	 {
-		
-		 if(true)
+		 if(returnval==true)
 		 {
-		 System.out.println(" balance is available");
+		 System.out.println(" balance is available"); 
+		
 		 }
-		 System.out.println("balance is not available"); 
+		 else { System.out.println(" balance is not available");}
 	 }
-
 }
